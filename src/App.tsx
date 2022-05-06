@@ -1,27 +1,10 @@
 import React from 'react';
 import './App.css';
 
-let name: string;
-let number: number;
-let isStudent: boolean;
-let hobbies: string[];
-let role: [number, string];
-
-type Person = {
-  name: string;
-  age?: number;
-}
-
-let person: Person = {
-  name: "steve"
-}
-
-let lotsOfPeople: Person[];
-
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      Hello World
+      <span className='heading'>Taskify</span>
     </div>
   );
 }
