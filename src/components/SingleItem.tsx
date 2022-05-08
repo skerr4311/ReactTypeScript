@@ -1,35 +1,32 @@
 import React, {useEffect, useRef, useState} from 'react';
-import { ToDo } from '../Models/Item';
+import { ToDo, Actions } from '../Models/Item';
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import "../css/ListItems.css";
-import ToDoList from './ToDoList';
 
 interface Props {
     todo: ToDo;
     todos: ToDo[];
-    settodos: React.Dispatch<React.SetStateAction<ToDo[]>>;
+    dispatch: React.Dispatch<Actions>;
 }
 
-const SingleItem: React.FC<Props> = ({todo, todos, settodos}) => {
+const SingleItem: React.FC<Props> = ({todo, todos, dispatch}) => {
     const [edit, setEdit] = useState<Boolean>(false);
     const [edittodo, setEditToDo] = useState<string>(todo.todo);
     const inputRef = useRef<HTMLInputElement>(null);
 
     const handleDone = (id:number) => {
-        settodos(todos.map((todo) => todo.id === id ? {...todo, isDone: !todo.isDone } : todo))
+        dispatch({type:"done", payload:id});
     };
 
     const handleDelete = (id:number) => {
-        settodos(todos.filter((todo) => todo.id !== id));
+        dispatch({type:"remove", payload:id});
     };
 
     const handleEdit = (e: React.FormEvent, id:number) => {
         e.preventDefault();
-        settodos(todos.map((todo) => (
-            todo.id === id ? {...todo, todo:edittodo} : 
-            todo
-        )))
+        dispatch({type:"edit", payload:{id:id, todo:edittodo}}); //not working....
+        console.log(edittodo);
         setEdit(false);
     };
 

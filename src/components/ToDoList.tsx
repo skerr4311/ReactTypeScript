@@ -1,14 +1,14 @@
 import React from 'react';
-import { ToDo } from '../Models/Item';
+import { ToDo, Actions } from '../Models/Item';
 import "../css/ListItems.css"
 import SingleItem from './SingleItem';
 
 interface Props {
     todos: ToDo[];
-    settodos: React.Dispatch<React.SetStateAction<ToDo[]>>;
+    dispatch: React.Dispatch<Actions>;
 }
 
-const ToDoList: React.FC<Props> = ({ todos, settodos}) => {
+const ToDoList: React.FC<Props> = ({ todos, dispatch}) => {
     return (
         <div className='todos'>
             {todos.map(t => (
@@ -16,7 +16,7 @@ const ToDoList: React.FC<Props> = ({ todos, settodos}) => {
                     todo={t}
                     key={t.id}
                     todos={todos}
-                    settodos={settodos}
+                    dispatch={dispatch}
                 />
             ))}
         </div>
