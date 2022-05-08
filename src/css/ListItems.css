@@ -21,6 +21,10 @@
     font-size: 20px;
 }
 
+    .todo_single_text:focus {
+        outline:none;
+    }
+
 .icon {
     margin-left: 10px;
     font-size: 25px;
